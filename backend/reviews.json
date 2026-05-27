@@ -1,0 +1,30 @@
+[
+    {
+        "quote": "Rhino Architects turned our dream home into reality. They took care of everything from architectural planning to interior excellence. The site supervision was daily and meticulous.",
+        "author": "Sarah Jenkins",
+        "role": "Homeowner, Villa Crest",
+        "rating": 5,
+        "published": true
+    },
+    {
+        "quote": "For our commercial space expansion, we needed a team that could deliver on time and strictly follow building guidelines. Rhino delivered the project 2 weeks ahead of schedule.",
+        "author": "Marcus Chen",
+        "role": "CEO, TechSpace Office",
+        "rating": 5,
+        "published": true
+    },
+    {
+        "quote": "Their transparent pricing and professional execution are incredibly refreshing. We received weekly photo updates and a detailed breakdown of raw materials. Exceptionally recommended!",
+        "author": "David Miller",
+        "role": "Penthouse Owner",
+        "rating": 5,
+        "published": true
+    },
+    {
+        "quote": "Good Efforts",
+        "author": "Monika",
+        "role": "Engineer",
+        "rating": 4,
+        "published": false
+    }
+]

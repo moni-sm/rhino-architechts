@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>Rhino Architects - Administrator Workspace</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- SECURE LOGIN GATE -->
+  <div id="login-gate" class="login-wrapper">
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="logo-icon">🦏</div>
+        <div class="logo-brand">RHINO</div>
+        <div class="logo-sub">ADMIN WORKSPACE</div>
+      </div>
+      <h2>Authorized Access Only</h2>
+      <p>Please log in using your administrator credentials to manage showcase catalogs and moderate client reviews.</p>
+      
+      <form id="login-form">
+        <div class="form-field">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Enter username" required autocomplete="username">
+        </div>
+        <div class="form-field">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn-primary full-width">Unlock Session</button>
+        <p id="login-error" class="login-alert error-msg" style="display: none;">✗ Invalid credentials. Please try again.</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- DASHBOARD WRAPPER (HIDDEN BY DEFAULT) -->
+  <div id="dashboard-wrapper" class="admin-page-layout" style="display: none;">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-brand">
+        <span class="logo-badge">🦏</span>
+        <div class="logo-text">
+          <div class="logo-brand">RHINO</div>
+          <div class="logo-sub">ARCHITECTS</div>
+        </div>
+      </div>
+      
+      <div class="sidebar-user">
+        <div class="user-avatar" id="user-avatar-char">A</div>
+        <div class="user-info">
+          <span class="user-name" id="user-name-display">Administrator</span>
+          <span class="user-role">System Manager</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" id="nav-dashboard" onclick="switchTab('dashboard')">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="9"></rect>
+            <rect x="14" y="3" width="7" height="5"></rect>
+            <rect x="14" y="12" width="7" height="9"></rect>
+            <rect x="3" y="16" width="7" height="5"></rect>
+          </svg>
+          Dashboard
+        </button>
+        <button class="nav-item" id="nav-projects" onclick="switchTab('projects')">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+          </svg>
+          Showcase Projects
+        </button>
+        <button class="nav-item" id="nav-reviews" onclick="switchTab('reviews')">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          Testimonial Reviews
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button id="logout-btn" class="btn-sidebar-logout">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          Lock Session
+        </button>
+      </div>
+    </aside>
+
+    <!-- RIGHT MAIN PANEL -->
+    <main class="admin-main-panel">
+      
+      <!-- TOP NAVIGATION BAR -->
+      <header class="main-panel-header">
+        <div class="header-title-block">
+          <h1 id="page-title">Dashboard Overview</h1>
+          <p id="page-subtitle">Welcome back, manager. Here is the active website snapshot.</p>
+        </div>
+        <div class="header-actions">
+          <span class="system-status-indicator"><span class="pulse-dot"></span> Backend Active</span>
+        </div>
+      </header>
+
+      <!-- VIEWPORTS CONTENT CONTAINER -->
+      <div class="main-panel-content">
+        
+        <!-- 1. DASHBOARD VIEW (ACTIVE BY DEFAULT) -->
+        <section id="view-dashboard" class="tab-panel active">
+          
+          <!-- QUICK STATS BAR -->
+          <div class="dashboard-stats-grid">
+            <div class="stat-card" onclick="switchTab('projects')">
+              <div class="stat-icon-wrapper projects">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-label">Showcase Projects</span>
+                <h3 id="stat-projects-count">0</h3>
+              </div>
+              <span class="stat-action-arrow">&rarr;</span>
+            </div>
+
+            <div class="stat-card pending" onclick="switchTab('reviews')">
+              <div class="stat-icon-wrapper pending-reviews">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-label">Pending Approval</span>
+                <h3 id="stat-pending-reviews-count">0</h3>
+              </div>
+              <span class="stat-action-arrow">&rarr;</span>
+            </div>
+
+            <div class="stat-card published" onclick="switchTab('reviews')">
+              <div class="stat-icon-wrapper live-testimonials">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-label">Live Testimonials</span>
+                <h3 id="stat-published-reviews-count">0</h3>
+              </div>
+              <span class="stat-action-arrow">&rarr;</span>
+            </div>
+          </div>
+
+          <!-- RECENT SUMMARIES GRID -->
+          <div class="dashboard-double-column">
+            
+            <!-- Recent Projects Column -->
+            <div class="dashboard-summary-card">
+              <div class="card-header">
+                <h2>Recent Project Additions</h2>
+                <button class="btn-text" onclick="switchTab('projects')">View All</button>
+              </div>
+              <div id="dashboard-recent-projects" class="dashboard-activity-list">
+                <!-- Dynamically filled with recent projects -->
+              </div>
+            </div>
+
+            <!-- Recent Pending Reviews Column -->
+            <div class="dashboard-summary-card">
+              <div class="card-header">
+                <h2>Moderation Queue</h2>
+                <button class="btn-text" onclick="switchTab('reviews')">Moderate</button>
+              </div>
+              <div id="dashboard-recent-reviews" class="dashboard-activity-list">
+                <!-- Dynamically filled with recent reviews -->
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 2. PROJECTS VIEW -->
+        <section id="view-projects" class="tab-panel">
+          
+          <div class="list-section-header">
+            <div class="search-filter-row">
+              <div class="search-input-wrapper">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="project-search" placeholder="Search projects by title, category, location..." oninput="filterProjects()">
+              </div>
+              
+              <div class="filter-controls">
+                <select id="project-filter-category" onchange="filterProjects()">
+                  <option value="all">All Categories</option>
+                  <!-- Dynamically populated categories -->
+                </select>
+                
+                <select id="project-filter-status" onchange="filterProjects()">
+                  <option value="all">All Statuses</option>
+                  <option value="completed">Completed</option>
+                  <option value="ongoing">Ongoing</option>
+                </select>
+
+                <button class="btn-primary icon-left" onclick="openDrawer()">
+                  <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  New Showcase
+                </button>
+              </div>
+            </div>
+            <p id="project-count-text" class="count-helper-text">Loading showcase projects list...</p>
+          </div>
+
+          <div id="projects-list-container" class="projects-data-grid">
+            <!-- Dynamically populated projects grid -->
+          </div>
+        </section>
+
+        <!-- 3. REVIEWS VIEW -->
+        <section id="view-reviews" class="tab-panel">
+          
+          <div class="list-section-header">
+            <div class="reviews-moderation-nav">
+              <div class="moderation-tabs">
+                <button class="mod-tab active" id="tab-rev-all" onclick="filterReviewsTab('all')">
+                  All Reviews <span class="badge" id="badge-rev-all">0</span>
+                </button>
+                <button class="mod-tab" id="tab-rev-pending" onclick="filterReviewsTab('pending')">
+                  Pending Moderation <span class="badge warning" id="badge-rev-pending">0</span>
+                </button>
+                <button class="mod-tab" id="tab-rev-published" onclick="filterReviewsTab('published')">
+                  Published Testimonials <span class="badge success" id="badge-rev-published">0</span>
+                </button>
+              </div>
+            </div>
+            <p id="pending-review-count-text" class="count-helper-text">Loading moderation review lists...</p>
+            <p id="published-review-count-text" style="display: none;"></p> <!-- Kept for compatibility -->
+          </div>
+
+          <div id="reviews-list-container" class="reviews-data-list">
+            <!-- Dynamically populated reviews list based on active tab -->
+          </div>
+          
+          <!-- Hidden compatibility elements to avoid script errors -->
+          <div id="pending-reviews-list-container" style="display: none;"></div>
+          <div id="published-reviews-list-container" style="display: none;"></div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- SLIDE-OVER DRAWER (ADD PROJECT FORM) -->
+  <div id="project-drawer" class="drawer-wrapper">
+    <div class="drawer-overlay" onclick="closeDrawer()"></div>
+    <div class="drawer-container">
+      <div class="drawer-header">
+        <h2>Add Project Showcase</h2>
+        <button class="drawer-close-btn" onclick="closeDrawer()">&times;</button>
+      </div>
+      <div class="drawer-body">
+        <p class="drawer-helper-desc">Insert completed or ongoing architectural structures to the website's landing page catalog.</p>
+        
+        <form id="project-form" class="drawer-form">
+          <div class="form-field">
+            <label for="proj-title">Project Title</label>
+            <input type="text" id="proj-title" placeholder="e.g. Modernist Duplex Residence" required>
+          </div>
+
+          <div class="form-group-row-three">
+            <div class="form-field">
+              <label for="proj-cat">Category</label>
+              <input type="text" id="proj-cat" placeholder="e.g. Residential Construction" required>
+            </div>
+            <div class="form-field">
+              <label for="proj-loc">Location</label>
+              <input type="text" id="proj-loc" placeholder="e.g. Los Angeles, CA" required>
+            </div>
+            <div class="form-field">
+              <label for="proj-status">Status</label>
+              <select id="proj-status" required>
+                <option value="Completed">Completed</option>
+                <option value="Ongoing">Ongoing</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="proj-img">Image URL</label>
+            <input type="url" id="proj-img" placeholder="e.g. https://images.unsplash.com/photo-..." required>
+          </div>
+
+          <div class="form-field">
+            <label for="proj-details">Project Showcase Details</label>
+            <textarea id="proj-details" placeholder="Describe layout blueprints, engineering materials, raw structures planning, and interior details..." required></textarea>
+          </div>
+
+          <div class="drawer-footer">
+            <button type="button" class="btn-secondary" onclick="closeDrawer()">Cancel</button>
+            <button type="submit" id="submit-btn" class="btn-primary">Save Project</button>
+          </div>
+          
+          <p id="form-success" class="form-msg success-msg" style="display: none;">✓ Project saved and uploaded successfully!</p>
+          <p id="form-error" class="form-msg error-msg" style="display: none;">✗ Failed to save project details. Verify backend connection.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOM CONFIRMATION MODAL -->
+  <div id="confirm-modal" class="modal-wrapper">
+    <div class="modal-overlay"></div>
+    <div class="modal-card">
+      <div class="modal-header">
+        <span class="warning-icon">⚠️</span>
+        <h3>Confirm Action</h3>
+      </div>
+      <div class="modal-body">
+        <p id="confirm-modal-message">Are you sure you want to perform this action? This operation cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button id="confirm-modal-cancel" class="btn-secondary">Cancel</button>
+        <button id="confirm-modal-submit" class="btn-danger">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATIONS BLOCK -->
+  <div id="toast-container" class="toast-wrapper-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

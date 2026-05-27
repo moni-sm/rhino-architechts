@@ -1,0 +1,12 @@
+{
+  "name": "admin-portal",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "http-server -c-1 -p 5174",
+    "start": "http-server -c-1 -p 5174"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

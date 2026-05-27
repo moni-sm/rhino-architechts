@@ -1,0 +1,13 @@
+# Ignore python virtual environments and cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+venv/
+.env
+.git/
+.gitignore
+Dockerfile
+.dockerignore
+Procfile

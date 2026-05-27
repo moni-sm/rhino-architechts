@@ -1,0 +1,42 @@
+[
+    {
+        "title": "Eco-Villa Concept House",
+        "category": "Residential Construction",
+        "location": "Austin, TX",
+        "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "details": "A completed energy-efficient modular residence featuring sustainable timber framing, solar integrated roof planning, and recycled insulation systems.",
+        "status": "Completed"
+    },
+    {
+        "title": "Bespoke Dining & Living",
+        "category": "Interior Excellence",
+        "location": "Denver, CO",
+        "image": "https://images.unsplash.com/photo-1617806118233-18e1db207f62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "details": "A completed luxury custom dining space designed with warm oak furniture panels, hidden smart LED layouts, and space-optimizing open-floor layouts.",
+        "status": "Completed"
+    },
+    {
+        "title": "Boutique Co-Working Studio",
+        "category": "Commercial Architecture",
+        "location": "Miami, FL",
+        "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "details": "A completed turnkey office renovation delivering acoustic wood panelling, flexible desks, and custom steel partition grids for local startups.",
+        "status": "Completed"
+    },
+    {
+        "title": "Modern Duplex Build",
+        "category": "Residential Construction",
+        "location": "Los Angeles, CA",
+        "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "details": "An ongoing duplex residential construction project focusing on parametric brickwork facades, open concrete columns, and premium plumbing installation.",
+        "status": "Ongoing"
+    },
+    {
+        "title": "Urban Office Fit-Out",
+        "category": "Commercial Turnkey",
+        "location": "San Francisco, CA",
+        "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "details": "An ongoing workspace interior redesign delivering integrated HVAC controls, corporate color schemes, and structural layout optimization.",
+        "status": "Ongoing"
+    }
+]

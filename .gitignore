@@ -10,3 +10,12 @@ backend/__pycache__/
 backend/*.pyc
 backend/.env
 backend/.DS_Store
+
+# Admin Portal
+admin/node_modules/
+
+# Python Virtual Environments
+.venv/
+venv/
+ENV/
+ENV/
