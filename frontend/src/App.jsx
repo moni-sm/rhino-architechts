@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './index.css';
 import logoImg from './assets/logo_orange.png';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 const DEFAULT_PROJECTS = [
   {
     title: "Eco-Villa Concept House",
@@ -113,7 +115,7 @@ function App() {
   // Fetch projects from FastAPI on mount
   const fetchProjects = async () => {
     try {
-      const res = await fetch('http://localhost:8000/api/projects');
+      const res = await fetch(`${API_BASE_URL}/api/projects`);
       if (res.ok) {
         const data = await res.json();
         setProjects(data);
@@ -129,7 +131,7 @@ function App() {
   // Fetch reviews from FastAPI on mount
   const fetchReviews = async () => {
     try {
-      const res = await fetch('http://localhost:8000/api/reviews');
+      const res = await fetch(`${API_BASE_URL}/api/reviews`);
       if (res.ok) {
         const data = await res.json();
         setTestimonials(data.length > 0 ? data : DEFAULT_TESTIMONIALS);
@@ -205,7 +207,7 @@ function App() {
     e.preventDefault();
     setFormStatus('submitting');
     try {
-      const response = await fetch('http://localhost:8000/api/contact', {
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -247,7 +249,7 @@ function App() {
     e.preventDefault();
     setReviewFormStatus('submitting');
     try {
-      const res = await fetch('http://localhost:8000/api/reviews', {
+      const res = await fetch(`${API_BASE_URL}/api/reviews`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -290,7 +292,7 @@ function App() {
     }, 50);
 
     try {
-      const res = await fetch('http://localhost:8000/api/chat', {
+      const res = await fetch(`${API_BASE_URL}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

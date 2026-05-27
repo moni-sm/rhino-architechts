@@ -4,8 +4,9 @@ const ADMIN_PASS = "rhino-admin-2026";
 const TEST_USER = "test";
 const TEST_PASS = "test";
 
-const API_URL = "http://localhost:8000/api/projects";
-const REVIEWS_API_URL = "http://localhost:8000/api/reviews";
+const API_BASE_URL = window.API_BASE_URL || "http://localhost:8000";
+const API_URL = `${API_BASE_URL}/api/projects`;
+const REVIEWS_API_URL = `${API_BASE_URL}/api/reviews`;
 
 // Global State
 let projectsData = [];
