@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './index.css';
 import logoImg from './assets/logo_orange.png';
+import loaderVid from './assets/loader.mp4';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
@@ -71,6 +72,8 @@ const DEFAULT_TESTIMONIALS = [
 function App() {
   // Navigation & Scroll state
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [appLoading, setAppLoading] = useState(true);
 
   // Dynamic projects list state
   const [projects, setProjects] = useState(DEFAULT_PROJECTS);
@@ -145,8 +148,13 @@ function App() {
   };
 
   useEffect(() => {
-    fetchProjects();
-    fetchReviews();
+    const loadData = async () => {
+      await Promise.all([fetchProjects(), fetchReviews()]);
+      setTimeout(() => {
+        setAppLoading(false);
+      }, 1000);
+    };
+    loadData();
   }, []);
 
   // Scroll detection for sticky navbar
@@ -404,13 +412,28 @@ function App() {
   // RENDER LANDING VIEW (CONTROL4 STYLE SECTIONS)
   return (
     <div className="app">
+      {appLoading && (
+        <div className="page-preloader">
+          <div className="preloader-content">
+            <video 
+              src={loaderVid} 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              className="preloader-video"
+            />
+            <p className="preloader-text">Constructing Experiences...</p>
+          </div>
+        </div>
+      )}
       {/* 1. Navbar */}
       <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
         <div className="logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <img src={logoImg} alt="Rhino Architects and Construction Logo" className="logo-img" />
           <div className="logo-text">
             <div className="logo-brand">RHINO</div>
-            <div className="logo-sub">ARCHITECTS & CONSTRUCTION</div>
+            <div className="logo-sub">ARCHITECTS &amp; CONSTRUCTION</div>
           </div>
         </div>
         <div className="nav-links">
@@ -431,7 +454,7 @@ function App() {
               <a href="#possibilities" onClick={() => setPossibilitiesTab('Business')} className="dropdown-item">Commercial Turnkey</a>
               <a href="#possibilities" onClick={() => setPossibilitiesTab('Business')} className="dropdown-item">Modern Office Layouts</a>
               <a href="#possibilities" onClick={() => setPossibilitiesTab('Business')} className="dropdown-item">Retail Fit-Outs</a>
-              <a href="#benefits" className="dropdown-item">Fitness & Workspace Planning</a>
+              <a href="#benefits" className="dropdown-item">Fitness &amp; Workspace Planning</a>
             </div>
           </div>
           {/* Dropdown 3: Our Process */}
@@ -440,7 +463,7 @@ function App() {
             <div className="dropdown-menu">
               <a href="#discover" className="dropdown-item">The Rhino Difference</a>
               <a href="#benefits" className="dropdown-item">Site Supervision</a>
-              <a href="#benefits" className="dropdown-item">Timeline & Quality Checks</a>
+              <a href="#benefits" className="dropdown-item">Timeline &amp; Quality Checks</a>
             </div>
           </div>
           {/* Dropdown 4: Resources */}
@@ -453,7 +476,34 @@ function App() {
           </div>
           <a href="#contact" className="nav-link nav-btn">Request a Quote</a>
         </div>
+
+        {/* Hamburger toggle — mobile only */}
+        <button
+          className="hamburger-btn"
+          onClick={() => setMobileMenuOpen((o) => !o)}
+          aria-label="Toggle mobile navigation"
+          aria-expanded={mobileMenuOpen}
+        >
+          <span className={`hamburger-line ${mobileMenuOpen ? 'open' : ''}`}></span>
+          <span className={`hamburger-line ${mobileMenuOpen ? 'open' : ''}`}></span>
+          <span className={`hamburger-line ${mobileMenuOpen ? 'open' : ''}`}></span>
+        </button>
       </nav>
+
+      {/* Mobile Slide-Down Navigation Menu */}
+      {mobileMenuOpen && (
+        <div className="mobile-nav-overlay" onClick={() => setMobileMenuOpen(false)}>
+          <div className="mobile-nav-panel" onClick={(e) => e.stopPropagation()}>
+            <a href="#discover" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>About Us</a>
+            <a href="#possibilities" className="mobile-nav-link" onClick={() => { setPossibilitiesTab('Home'); setMobileMenuOpen(false); }}>For Home</a>
+            <a href="#possibilities" className="mobile-nav-link" onClick={() => { setPossibilitiesTab('Business'); setMobileMenuOpen(false); }}>For Business</a>
+            <a href="#benefits" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>Our Process</a>
+            <a href="#partners" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>Partners</a>
+            <a href="#testimonials" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>Reviews</a>
+            <a href="#contact" className="mobile-nav-link mobile-nav-cta" onClick={() => setMobileMenuOpen(false)}>Request a Quote</a>
+          </div>
+        </div>
+      )}
 
       {/* 2. Hero Slider with Overlay styling */}
       <section className="hero-slider-section">
@@ -1078,7 +1128,9 @@ function App() {
             {isTyping && (
               <div className="chat-bubble-wrapper assistant">
                 <div className="chat-bubble assistant typing">
-                  <span>.</span><span>.</span><span>.</span>
+                  <div className="typing-dot"></div>
+                  <div className="typing-dot"></div>
+                  <div className="typing-dot"></div>
                 </div>
               </div>
             )}
